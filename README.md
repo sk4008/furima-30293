@@ -7,9 +7,11 @@
 | --------           | ------ | ----------- |
 | first_name         | string | null: false |
 | last_name          | string | null: false |
+| first_name_kana    | string | null: false |
+| last_name_kana     | string | null: false |
 | email              | string | null: false |
 | encrypted_password | string | null: false |
-| date               | string | null: false |
+| date               | date | null: false   |
 
 ### Association
 
@@ -20,17 +22,17 @@
 
 ## items テーブル
 
-| Column    | Type       | Options       |
-| ------    | ---------- | --------------|
-| text      | text       | null: false  |
-| image     | string     | null: false  |
-| category  | string     | null: false  |
-| state     | string     | null: false  |
-| price     | integer    | null: false  |
-| delivery  | string     | null: false  |
-| area      | string     | null: false  |
-| days      | date       | null: false  |
-| item_name | text       | null: false  |
+| Column       | Type       | Options                       |
+| ------       | ---------- | -------------                 |
+| text         | text       | null: false                   |
+| category_id  | integer    | null: false                   |
+| state_id     | integer    | null: false                   |
+| price        | integer    | null: false                   |
+| delivery_id  | integer    | null: false                   |
+| area_id      | integer    | null: false                   |
+| days_id      | integer    | null: false                   |
+| item_name    | string     | null: false                   |
+| user_id      | references | null: false,foreign_key :true |
 
 ### Association
 
@@ -39,9 +41,13 @@
 
 ## purchase テーブル
 
-| Column        | Type       | Options                         |
-| -------       | ---------- | ------------------------------- |
-| purchase_name | string     | null: false,foreign_key         |
+| Column        | Type           | Options                         |
+| -------       | ----------     | ------------------------------- |
+| user_id       | references     | null: false,foreign_key :true   |
+| item_id       | references     | null: false,foreign_key :true   |
+
+
+
 
 ### Association
 
@@ -61,6 +67,4 @@
 
 ### Association
 
-- belongs_to :user
-- has_many :items
 - belongs_to :purchase
