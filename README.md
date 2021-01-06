@@ -1,24 +1,63 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
 
-* Ruby version
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| name     | string | null: false |
+| email    | string | null: false |
+| password | string | null: false |
+| birthday | string | null: false |
 
-* System dependencies
+### Association
 
-* Configuration
+- has_many :items
+- has_many :purchase
+- has_many :address
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+## items テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column    | Type       | Options       |
+| ------    | ---------- | --------------|
+| text      | text       | null: false  |
+| image     | string     | null: false  |
+| category  | string     | null: false  |
+| state     | string     | null: false  |
+| price     | integer    | null: false  |
+| delivery  | string     | null: false  |
+| area      | string     | null: false  |
+| days      | date       | null: false  |
+| item_name | text       | null: false  |
 
-* Deployment instructions
+### Association
 
-* ...
+- belongs_to :user
+- belongs_to :purchase
+- belongs_to :address
+
+## purchase テーブル
+
+| Column        | Type       | Options                         |
+| -------       | ---------- | ------------------------------- |
+| purchase_name | string     | null: false                    |
+
+### Association
+
+- belongs_to :user
+- has_many :items
+- has_one :address
+
+### addressテーブル
+| Column            | Type       | Options                        |
+| -------           | ---------- | ------------------------------ |
+| address           | string     | null: false                    |
+| telephone＿number  | string    | null: false                     |
+
+### Association
+
+- belongs_to :user
+- has_many :items
+- belongs_to :purchase
