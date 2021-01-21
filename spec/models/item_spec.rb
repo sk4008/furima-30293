@@ -40,9 +40,8 @@ RSpec.describe Item, type: :model do
   it 'カテゴリーで1が入力されると登録できない' do
     @item.category_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include("Category must be other than 1")
+    expect(@item.errors.full_messages).to include('Category must be other than 1')
   end
-
 
   it '商品の状態が空では出品できない' do
     @item.state_id = ''
@@ -53,9 +52,8 @@ RSpec.describe Item, type: :model do
   it '商品の状態で1が入力されると登録できない' do
     @item.state_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include("State must be other than 1")
+    expect(@item.errors.full_messages).to include('State must be other than 1')
   end
-
 
   it '配送料の負担が空では出品できない' do
     @item.delivery_id = ''
@@ -66,9 +64,8 @@ RSpec.describe Item, type: :model do
   it '配送料の負担で1が入力されると登録できない' do
     @item.delivery_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include("Delivery must be other than 1")
+    expect(@item.errors.full_messages).to include('Delivery must be other than 1')
   end
-
 
   it '発送元の地域が空では出品できない' do
     @item.area_id = ''
@@ -79,9 +76,8 @@ RSpec.describe Item, type: :model do
   it '配送元の地域で1が入力されると登録できない' do
     @item.area_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include("Area must be other than 1")
+    expect(@item.errors.full_messages).to include('Area must be other than 1')
   end
-
 
   it '発送までの日数が空では出品できない' do
     @item.day_id = ''
@@ -92,7 +88,7 @@ RSpec.describe Item, type: :model do
   it '発送までの日数で1を入力されると登録できない' do
     @item.day_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to include("Day must be other than 1")
+    expect(@item.errors.full_messages).to include('Day must be other than 1')
   end
 
   it '価格が空では出品できない' do
@@ -102,7 +98,7 @@ RSpec.describe Item, type: :model do
   end
 
   it '価格の範囲が、¥300~¥9,999,999の間でないと出品できない(大きい場合)' do
-    @item.price = 10000000
+    @item.price = 10_000_000
     @item.valid?
     expect(@item.errors.full_messages).to include('Price is out of setting range')
   end
