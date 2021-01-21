@@ -38,7 +38,7 @@ RSpec.describe Item, type: :model do
   end
 
   it 'カテゴリーで1が入力されると登録できない' do
-    @item.category_id = '1'
+    @item.category_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("Category must be other than 1")
   end
@@ -51,7 +51,7 @@ RSpec.describe Item, type: :model do
   end
 
   it '商品の状態で1が入力されると登録できない' do
-    @item.state_id = '1'
+    @item.state_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("State must be other than 1")
   end
@@ -64,7 +64,7 @@ RSpec.describe Item, type: :model do
   end
 
   it '配送料の負担で1が入力されると登録できない' do
-    @item.delivery_id = '1'
+    @item.delivery_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("Delivery must be other than 1")
   end
@@ -77,7 +77,7 @@ RSpec.describe Item, type: :model do
   end
 
   it '配送元の地域で1が入力されると登録できない' do
-    @item.area_id = '1'
+    @item.area_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("Area must be other than 1")
   end
