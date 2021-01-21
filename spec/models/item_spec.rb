@@ -90,7 +90,7 @@ RSpec.describe Item, type: :model do
   end
 
   it '発送までの日数で1を入力されると登録できない' do
-    @item.day_id = '1'
+    @item.day_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("Day must be other than 1")
   end
