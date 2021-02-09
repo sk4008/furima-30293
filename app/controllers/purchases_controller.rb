@@ -1,6 +1,8 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!, except: [:new]
+  before_action :move_to_index, only: [:index]
   def index
-    @item = Item.find(params[:item_id])
+    # @item = Item.find(params[:item_id])
     @orderform = OrderForm.new
   end
 
@@ -32,4 +34,11 @@ class PurchasesController < ApplicationController
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
+
+  def move_to_index
+    @item = Item.find(params[:item_id])
+    redirect_to root_path if current_user.id == @item.user.id
+  end
 end
+
+

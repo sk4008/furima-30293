@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    # redirect_to root_path if @item.purchase.present?
   end
 
   def show
@@ -53,6 +54,6 @@ class ItemsController < ApplicationController
   end
 
   def redirect_item
-    redirect_to root_path if current_user.id != @item.user.id
+    redirect_to root_path if current_user.id != @item.user.id || @item.purchase.present?
   end
 end
