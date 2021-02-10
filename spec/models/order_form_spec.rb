@@ -63,13 +63,19 @@ end
   end
 
   it '電話番号でハイフンがあると購入できない' do
-    @orderform.telephone_number = 0o00 - 0o000 - 0o000
+    @orderform.telephone_number = "0o00 - 0o000 - 0o000"
     @orderform.valid?
     expect(@orderform.errors.full_messages).to include('Telephone number is invalid')
   end
 
   it '電話番号でが12桁以上では購入できない' do
-    @orderform.telephone_number = 0000000000000
+    @orderform.telephone_number = "0000000000000"
+    @orderform.valid?
+    expect(@orderform.errors.full_messages).to include('Telephone number is invalid')
+  end
+
+  it '電話番号が全角数字だと登録できない' do
+    @orderform.telephone_number = "０００００００００００"
     @orderform.valid?
     expect(@orderform.errors.full_messages).to include('Telephone number is invalid')
   end
