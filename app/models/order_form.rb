@@ -3,7 +3,7 @@ class OrderForm
   attr_accessor :postal_code, :prefectures_id, :municipality, :address, :building_name, :telephone_number, :user_id, :item_id,
                 :token
 
-  validates :postal_code, :prefectures_id, :municipality, :address, :telephone_number, :token, presence: true
+  validates :postal_code, :prefectures_id, :municipality, :address, :telephone_number, :token, :user_id, :item_id, presence: true
   validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
   validates :prefectures_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :telephone_number, format: { with: /\A\d{10,11}\z/ }
