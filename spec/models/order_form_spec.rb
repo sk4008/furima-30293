@@ -22,80 +22,79 @@ end
     it '郵便番号が空では購入できない' do
       @orderform.postal_code = ''
       @orderform.valid?
-      expect(@orderform.errors.full_messages).to include("Postal code can't be blank",
-                                                         'Postal code is invalid. Include hyphen(-)')
+      expect(@orderform.errors.full_messages).to include("郵便番号を入力してください")
     end
 
   it '郵便番号でハイフンがないと購入できない' do
     @orderform.postal_code = '0000000'
     @orderform.valid?
-    expect(@orderform.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+    expect(@orderform.errors.full_messages).to include("郵便番号はハイフンを含めてください")
   end
 
   it '都道府県が空では購入できない' do
     @orderform.prefectures_id = ''
     @orderform.valid?
-    expect(@orderform.errors.full_messages).to include("Prefectures can't be blank")
+    expect(@orderform.errors.full_messages).to include("都道府県を入力してください")
   end
 
   it '都道府県で１で入力されると購入できない' do
     @orderform.prefectures_id = 1
     @orderform.valid?
-    expect(@orderform.errors.full_messages).to include("Prefectures can't be blank")
+    expect(@orderform.errors.full_messages).to include("都道府県を入力してください")
   end
 
   it '市区町村が空では購入できない' do
     @orderform.municipality = ''
     @orderform.valid?
-    expect(@orderform.errors.full_messages).to include("Municipality can't be blank")
+    expect(@orderform.errors.full_messages).to include("市区町村を入力してください")
   end
 
   it '番地が空では購入できない' do
     @orderform.address = ''
     @orderform.valid?
-    expect(@orderform.errors.full_messages).to include("Address can't be blank")
+    expect(@orderform.errors.full_messages).to include("番地を入力してください")
   end
 
   it '電話番号が空では購入できない' do
     @orderform.telephone_number = ''
     @orderform.valid?
-    expect(@orderform.errors.full_messages).to include("Telephone number can't be blank", 'Telephone number is invalid')
+    expect(@orderform.errors.full_messages).to include("電話番号を入力してください")
   end
 
   it '電話番号でハイフンがあると購入できない' do
     @orderform.telephone_number = "0o00 - 0o000 - 0o000"
     @orderform.valid?
-    expect(@orderform.errors.full_messages).to include('Telephone number is invalid')
+    expect(@orderform.errors.full_messages).to include("電話番号は不正な値です")
   end
 
   it '電話番号でが12桁以上では購入できない' do
     @orderform.telephone_number = "0000000000000"
     @orderform.valid?
-    expect(@orderform.errors.full_messages).to include('Telephone number is invalid')
+    expect(@orderform.errors.full_messages).to include("電話番号は不正な値です")
   end
 
   it '電話番号が全角数字だと登録できない' do
     @orderform.telephone_number = "０００００００００００"
     @orderform.valid?
-    expect(@orderform.errors.full_messages).to include('Telephone number is invalid')
+    expect(@orderform.errors.full_messages).to include("電話番号は不正な値です")
   end
 
   it 'tokenが空では登録できないこと' do
     @orderform.token = ''
     @orderform.valid?
-    expect(@orderform.errors.full_messages).to include("Token can't be blank")
+    expect(@orderform.errors.full_messages).to include("カード情報を入力してください")
    end
 
    it 'user_idがないと購入できない' do
    @orderform.user_id = ''
    @orderform.valid?
-   expect(@orderform.errors.full_messages).to include("User can't be blank")
+   expect(@orderform.errors.full_messages).to include("Userを入力してください")
    end
 
    it 'item_idがないと購入できない' do
    @orderform.item_id = ''
    @orderform.valid?
-   expect(@orderform.errors.full_messages).to include("Item can't be blank")
+   expect(@orderform.errors.full_messages).to include("Itemを入力してください")
    end
  end 
 end
